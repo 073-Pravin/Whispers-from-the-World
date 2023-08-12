@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import NewsItems from './NewsItems'
 
 export default class News extends Component {
+    constructor(){
+        super();
+        console.log("hello");
+        this.state ={
+            articles: this.articles,
+            loading:false
+        }
+    }
   render() {
     return (
         <div className="container my-3">
