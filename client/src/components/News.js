@@ -55,7 +55,7 @@ const News = (props)=>{
     return (
       <>
         <h1 className="text-center" style={{marginTop:73}}>
-          NewMonkey - Top {CapitalizeFirstLetter(props.category)}{" "}
+        Whispers from the World - Top {CapitalizeFirstLetter(props.category)}{" "}
           Headlines
         </h1>
         {/* {loading && <Spinner />} */}
