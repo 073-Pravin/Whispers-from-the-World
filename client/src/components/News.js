@@ -31,7 +31,7 @@ const News = (props)=>{
     props.setProgress(100);
   }
   useEffect(()=>{
-    document.title = `${CapitalizeFirstLetter(props.category)} - NewsMonkey`;
+    document.title = `${CapitalizeFirstLetter(props.category)} - Whispers from the world`;
     updateNews();
   },[])
   //   handlePrevClick = async () => {
@@ -89,29 +89,6 @@ const News = (props)=>{
             </div>
           </div>
         </InfiniteScroll>
-        {/* <div className="container d-flex justify-content-between">
-          <button
-            disabled={page <= 1}
-            type="button"
-            className="btn btn-dark"
-            onClick={handlePrevClick}
-          >
-            &laquo; Previous
-          </button>
-          <button
-            disabled={
-              state.page + 1 >
-                Math.ceil(state.totalArticles / props.pageSize) ||
-              state.loading
-            }
-            type="button"
-            className="btn btn-dark"
-            onClick={handleNextClick}
-          >
-            {" "}
-            Next &raquo;
-          </button>
-        </div> */}
       </>
     );
   }
