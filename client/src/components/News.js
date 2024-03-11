@@ -3,7 +3,7 @@ import NewsItems from "./NewsItems";
 import Spinner from "./Spinner";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import axios from "axios";
 const News = (props)=>{
   
 
@@ -18,13 +18,21 @@ const News = (props)=>{
 
   const updateNews =async ()=> {
     props.setProgress(10);
-    let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pagesize=${props.pageSize}`;
     setLoading(true);
-    let data = await fetch(url);
     props.setProgress(30);
-    let parsedData = await data.json();
+    
+    let {data} = await axios.post('/api',{
+      country: `${props.country}`,
+      category:`${props.category}`,
+      apikey:`${props.apikey}`,
+      page:page+1,
+      pageSize:props.pageSize
+    });  
+    let parsedData=data;
+    // console.log(parsedData);
+    
     props.setProgress(70);
-
+    
     setArticles(parsedData.articles);
     setTotalResults(parsedData.totalResults);
     setLoading(false);
@@ -34,23 +42,24 @@ const News = (props)=>{
     document.title = `${CapitalizeFirstLetter(props.category)} - Whispers from the world`;
     updateNews();
   },[])
-  //   handlePrevClick = async () => {
-  //     setState({ page: page - 1 });
-  //     updateNews();
-  //   };
-  //   handleNextClick = async () => {
-  //     setState({ page: page + 1 });
-  //     updateNews();
-  //   };
+
   const fetchMoreData = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page+1}&pagesize=${props.pageSize}`;
+    setLoading(true);
+    let {data} = await axios.post('/api',{
+      country: `${props.country}`,
+      category:`${props.category}`,
+      apikey:`${props.apikey}`,
+      page:page+1,
+      pageSize:props.pageSize
+    }); 
+    let parsedData=data;
+    props.setProgress(70);
+    // console.log(parsedData);
     setPage(page+1)
-    // let url="https://newsapi.org/v2/top-headlines?country=us&apiKey=0c1773b7175240c2989e42d7acb24af4"
-    let data = await fetch(url);
-    let parsedData = await data.json();
     setArticles(articles.concat(parsedData.articles))
     setTotalResults(parsedData.totalResults)
-
+    props.setProgress(100);
+    setLoading(false);
   };
 
     return (
