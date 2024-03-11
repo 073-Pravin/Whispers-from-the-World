@@ -4,7 +4,9 @@ import dotenv from "dotenv";
 const app = express();
 app.use(express.json());
 dotenv.config();
-
+app.get('/',(req, res) => {
+    res.send("<h1>Welcome to newsapp backend</h1>");
+})
 app.post('/api',async  (req,res)=>{ // req is the request object, res is the response object
     // console.log(req.body);
     const {country,category,apikey,page,pageSize} = req.body;
