@@ -20,16 +20,9 @@ const News = (props)=>{
     props.setProgress(10);
     setLoading(true);
     props.setProgress(30);
-    
-    let {data} = await axios.post('/api',{
-      country: `${props.country}`,
-      category:`${props.category}`,
-      apikey:`${props.apikey}`,
-      page:page+1,
-      pageSize:props.pageSize
-    });  
+    let {data} = await axios.get(`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page+1}&pagesize=${props.pageSize}`);
+    console.log(data);
     let parsedData=data;
-    // console.log(parsedData);
     
     props.setProgress(70);
     
@@ -45,13 +38,9 @@ const News = (props)=>{
 
   const fetchMoreData = async () => {
     setLoading(true);
-    let {data} = await axios.post('/api',{
-      country: `${props.country}`,
-      category:`${props.category}`,
-      apikey:`${props.apikey}`,
-      page:page+1,
-      pageSize:props.pageSize
-    }); 
+  
+    let {data} = await axios.get(`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page+1}&pagesize=${props.pageSize}`);
+    console.log(data);
     let parsedData=data;
     props.setProgress(70);
     // console.log(parsedData);
