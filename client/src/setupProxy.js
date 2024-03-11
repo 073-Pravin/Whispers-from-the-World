@@ -5,8 +5,8 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://localhost:5000',
-      // target: 'https://mithaicart-3nna.vercel.app',
+      // target: 'http://localhost:5000',
+      target: 'https://whispers-from-the-world-zov8.vercel.app/',
       changeOrigin: true,
     })
   );
