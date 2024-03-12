@@ -22,7 +22,7 @@ const News = (props) => {
     setLoading(true);
     props.setProgress(30);
     let { data } = await axios.get(
-      `/api/?country=${props.country}&category=${props.category}&apiKey=${
+      `https://whispers-from-the-world-olive.vercel.app/api/?country=${props.country}&category=${props.category}&apiKey=${
         props.apikey
       }&page=${page + 1}&pagesize=${props.pageSize}`
     );
@@ -46,7 +46,7 @@ const News = (props) => {
     setLoading(true);
 
     let { data } = await axios.get(
-      `/api/?country=${props.country}&category=${props.category}&apiKey=${
+      `https://whispers-from-the-world-olive.vercel.app/api/?country=${props.country}&category=${props.category}&apiKey=${
         props.apikey
       }&page=${page + 1}&pagesize=${props.pageSize}`
     );
