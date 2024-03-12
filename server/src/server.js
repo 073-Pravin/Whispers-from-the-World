@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 
 app.get("/",(req,res)=>{
-    res.send("Welcome to the server");
+    res.send("<h1>Welcome to the server</h1>");
 })
 
 app.get('/api',async (req,res)=>{
