@@ -5,7 +5,7 @@ module.exports = function(app) {
     '/api',
     createProxyMiddleware({
     //   target: 'http://localhost:5000',
-        target: "https://whispers-from-the-world-olive.vercel.app/",
+        target: "https://whispers-from-the-world-olive.vercel.app",
       changeOrigin: true,
     })
   );
